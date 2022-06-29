@@ -1,4 +1,4 @@
-package com.watermelon.recipes;
+package com.watermelon.main;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

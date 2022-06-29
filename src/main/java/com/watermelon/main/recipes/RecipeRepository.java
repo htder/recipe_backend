@@ -1,4 +1,4 @@
-package com.watermelon.recipes;
+package com.watermelon.main.recipes;
 
 import org.springframework.data.repository.CrudRepository;
 

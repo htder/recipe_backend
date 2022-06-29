@@ -1,6 +1,6 @@
-package com.watermelon.ingredients;
+package com.watermelon.main.ingredients;
 
-import com.watermelon.recipes.Recipe;
+import com.watermelon.main.recipes.Recipe;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -16,6 +16,16 @@ public class Ingredient {
     @ManyToOne()
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
+
+    public Ingredient () {}
+
+    public Ingredient(
+            String name,
+            String amount
+    ) {
+        this.name = name;
+        this.amount = amount;
+    }
 
 
     public Long getId() {
