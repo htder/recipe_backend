@@ -12,11 +12,18 @@ public class Recipe {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long recipeId;
     private String name;
     private String description;
     private int rating;
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER
+    )
+    @JoinColumn(
+            name = "recipe_id",
+            referencedColumnName = "recipeId"
+    )
     private List<Ingredient> ingredients;
 
     public Recipe() {}
@@ -31,12 +38,12 @@ public class Recipe {
         this.rating = rating;
     }
 
-    public Long getId() {
-        return id;
+    public Long getRecipeId() {
+        return recipeId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setRecipeId(Long id) {
+        this.recipeId = id;
     }
 
     public String getName() {
@@ -74,7 +81,7 @@ public class Recipe {
     @Override
     public String toString() {
         return "Recipe{" +
-                "id=" + id +
+                "id=" + recipeId +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", rating=" + rating +
@@ -87,11 +94,11 @@ public class Recipe {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Recipe recipe = (Recipe) o;
-        return rating == recipe.rating && id.equals(recipe.id) && name.equals(recipe.name) && description.equals(recipe.description) && ingredients.equals(recipe.ingredients);
+        return rating == recipe.rating && recipeId.equals(recipe.recipeId) && name.equals(recipe.name) && description.equals(recipe.description) && ingredients.equals(recipe.ingredients);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, rating, ingredients);
+        return Objects.hash(recipeId, name, description, rating, ingredients);
     }
 }

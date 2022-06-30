@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "ingredients")
 public class Ingredient {
 
     @Id
@@ -13,9 +14,6 @@ public class Ingredient {
     private Long id;
     private String name;
     private String amount;
-    @ManyToOne()
-    @JoinColumn(name = "recipe_id")
-    private Recipe recipe;
 
     public Ingredient () {}
 
