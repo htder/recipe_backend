@@ -25,4 +25,8 @@ public class RecipeService {
         this.recipeRepository.save(recipe);
     }
 
+    public void deleteRecipeByid(Long id) {
+        this.recipeRepository.deleteById(id);
+    }
+
 }
