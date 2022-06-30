@@ -7,8 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class RecipeRepositoryTest {
 
@@ -17,9 +15,9 @@ class RecipeRepositoryTest {
 
     @Test
     public void printRecipes() {
-        Ingredient flour = new Ingredient("flour", "100g");
-        Ingredient water = new Ingredient("water", "200ml");
-        Recipe recipe = new Recipe("Bread", "White bread", 1);
+        Ingredient flour = new Ingredient("flour", "100g", unit);
+        Ingredient water = new Ingredient("water", "200ml", unit);
+        Recipe recipe = new Recipe("Bread", "White bread", 1, timeRequiredInMin);
         recipe.setIngredients(List.of(flour, water));
         recipeRepository.save(recipe);
 

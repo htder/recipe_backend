@@ -19,9 +19,9 @@ public class InitializeDatabase {
     @Bean
     public CommandLineRunner init() {
         return args -> {
-            Ingredient flour = new Ingredient("flour", "100g");
-            Ingredient water = new Ingredient("water", "200ml");
-            Recipe recipe = new Recipe("Bread", "White bread", 1);
+            Ingredient flour = new Ingredient("flour", "100", "g");
+            Ingredient water = new Ingredient("water", "200", "ml");
+            Recipe recipe = new Recipe("Bread", "White bread", 1, 220);
             recipe.setIngredients(List.of(flour, water));
             recipeRepository.save(recipe);
 

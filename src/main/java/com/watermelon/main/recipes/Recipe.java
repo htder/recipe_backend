@@ -16,6 +16,7 @@ public class Recipe {
     private String name;
     private String description;
     private int rating;
+    private int timeRequiredInMin;
     @OneToMany(
             cascade = CascadeType.PERSIST,
             fetch = FetchType.EAGER
@@ -31,11 +32,12 @@ public class Recipe {
     public Recipe(
             String name,
             String description,
-            int rating
-    ) {
+            int rating,
+            int timeRequiredInMin) {
         this.name = name;
         this.description = description;
         this.rating = rating;
+        this.timeRequiredInMin = timeRequiredInMin;
     }
 
     public Long getRecipeId() {
@@ -78,15 +80,12 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-    @Override
-    public String toString() {
-        return "Recipe{" +
-                "id=" + recipeId +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", rating=" + rating +
-                ", ingredients=" + ingredients +
-                '}';
+    public int getTimeRequiredInMin() {
+        return timeRequiredInMin;
+    }
+
+    public void setTimeRequiredInMin(int timeRequiredInMin) {
+        this.timeRequiredInMin = timeRequiredInMin;
     }
 
     @Override
@@ -94,11 +93,23 @@ public class Recipe {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Recipe recipe = (Recipe) o;
-        return rating == recipe.rating && recipeId.equals(recipe.recipeId) && name.equals(recipe.name) && description.equals(recipe.description) && ingredients.equals(recipe.ingredients);
+        return rating == recipe.rating && timeRequiredInMin == recipe.timeRequiredInMin && Objects.equals(recipeId, recipe.recipeId) && Objects.equals(name, recipe.name) && Objects.equals(description, recipe.description) && Objects.equals(ingredients, recipe.ingredients);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(recipeId, name, description, rating, ingredients);
+        return Objects.hash(recipeId, name, description, rating, timeRequiredInMin, ingredients);
+    }
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "recipeId=" + recipeId +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", rating=" + rating +
+                ", timeRequiredInMin=" + timeRequiredInMin +
+                ", ingredients=" + ingredients +
+                '}';
     }
 }
