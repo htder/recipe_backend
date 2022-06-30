@@ -1,10 +1,12 @@
 package com.watermelon.main.recipes;
 
 import com.watermelon.main.ingredients.Ingredient;
+import com.watermelon.main.instructions.Instruction;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "recipes")
@@ -25,7 +27,12 @@ public class Recipe {
             name = "recipe_id",
             referencedColumnName = "recipeId"
     )
-    private List<Ingredient> ingredients;
+    private Set<Ingredient> ingredients;
+    @OneToMany(
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER
+    )
+    private Set<Instruction> instructions;
 
     public Recipe() {}
 
@@ -72,11 +79,11 @@ public class Recipe {
         this.rating = rating;
     }
 
-    public List<Ingredient> getIngredients() {
+    public Set<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
+    public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -88,17 +95,25 @@ public class Recipe {
         this.timeRequiredInMin = timeRequiredInMin;
     }
 
+    public Set<Instruction> getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(Set<Instruction> instructions) {
+        this.instructions = instructions;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Recipe recipe = (Recipe) o;
-        return rating == recipe.rating && timeRequiredInMin == recipe.timeRequiredInMin && Objects.equals(recipeId, recipe.recipeId) && Objects.equals(name, recipe.name) && Objects.equals(description, recipe.description) && Objects.equals(ingredients, recipe.ingredients);
+        return rating == recipe.rating && timeRequiredInMin == recipe.timeRequiredInMin && Objects.equals(recipeId, recipe.recipeId) && Objects.equals(name, recipe.name) && Objects.equals(description, recipe.description) && Objects.equals(ingredients, recipe.ingredients) && Objects.equals(instructions, recipe.instructions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(recipeId, name, description, rating, timeRequiredInMin, ingredients);
+        return Objects.hash(recipeId, name, description, rating, timeRequiredInMin, ingredients, instructions);
     }
 
     @Override
@@ -110,6 +125,7 @@ public class Recipe {
                 ", rating=" + rating +
                 ", timeRequiredInMin=" + timeRequiredInMin +
                 ", ingredients=" + ingredients +
+                ", instructions=" + instructions +
                 '}';
     }
 }

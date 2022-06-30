@@ -1,39 +1,50 @@
 package com.watermelon.main.instructions;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.List;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "instructions")
 public class Instruction {
 
     @Id
-    private Long instructionId;
-    private String instruction;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String instructionText;
+    private Integer instructionPosition;
 
     public Instruction() {}
 
-    public Instruction(String instruction) {
-        this.instruction = instruction;
+    public Instruction(
+            String instructionText,
+            Integer instructionPosition
+    ) {
+        this.instructionText = instructionText;
+        this.instructionPosition = instructionPosition;
     }
 
-    public Long getInstructionId() {
-        return instructionId;
+    public Long getId() {
+        return id;
     }
 
-    public void setInstructionId(Long instructionId) {
-        this.instructionId = instructionId;
+    public void setId(Long instructionId) {
+        this.id = instructionId;
     }
 
-    public String getInstruction() {
-        return instruction;
+    public String getInstructionText() {
+        return instructionText;
     }
 
-    public void setInstruction(String instruction) {
-        this.instruction = instruction;
+    public void setInstructionText(String instruction) {
+        this.instructionText = instruction;
+    }
+
+    public Integer getInstructionPosition() {
+        return instructionPosition;
+    }
+
+    public void setInstructionPosition(Integer order) {
+        this.instructionPosition = order;
     }
 
     @Override
@@ -41,19 +52,13 @@ public class Instruction {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Instruction that = (Instruction) o;
-        return Objects.equals(instructionId, that.instructionId) && Objects.equals(instruction, that.instruction);
+        return Objects.equals(id, that.id) && Objects.equals(instructionText, that.instructionText) && Objects.equals(instructionPosition, that.instructionPosition);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(instructionId, instruction);
+        return Objects.hash(id, instructionText, instructionPosition);
     }
 
-    @Override
-    public String toString() {
-        return "Instruction{" +
-                "instructionId=" + instructionId +
-                ", instruction='" + instruction + '\'' +
-                '}';
-    }
+
 }
