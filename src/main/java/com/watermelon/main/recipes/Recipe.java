@@ -20,7 +20,7 @@ public class Recipe {
     private int rating;
     private int timeRequiredInMin;
     @OneToMany(
-            cascade = CascadeType.PERSIST,
+            cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
     @JoinColumn(
@@ -29,8 +29,12 @@ public class Recipe {
     )
     private Set<Ingredient> ingredients;
     @OneToMany(
-            cascade = CascadeType.PERSIST,
+            cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
+    )
+    @JoinColumn(
+            name = "recipe_id",
+            referencedColumnName = "recipeId"
     )
     private Set<Instruction> instructions;
 
