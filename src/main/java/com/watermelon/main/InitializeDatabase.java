@@ -16,7 +16,11 @@ import java.util.Set;
 public class InitializeDatabase {
 
     @Autowired
-    private RecipeRepository recipeRepository;
+    private final RecipeRepository recipeRepository;
+
+    public InitializeDatabase(RecipeRepository recipeRepository) {
+        this.recipeRepository = recipeRepository;
+    }
 
     @Bean
     public CommandLineRunner init() {

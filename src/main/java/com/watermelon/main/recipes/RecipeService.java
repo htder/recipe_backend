@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecipeService {
@@ -25,8 +26,11 @@ public class RecipeService {
         this.recipeRepository.save(recipe);
     }
 
-    public void deleteRecipeByid(Long id) {
+    public void deleteRecipeById(Long id) {
         this.recipeRepository.deleteById(id);
     }
 
+    public Optional<Recipe> getRecipeById(Long id) {
+        return this.recipeRepository.findById(id);
+    }
 }

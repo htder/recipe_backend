@@ -3,6 +3,7 @@ package com.watermelon.main.recipes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -22,6 +23,11 @@ public class RecipeController {
         return this.recipeService.getAllRecipes();
     }
 
+    @GetMapping("/recipe/{id}")
+    public Optional<Recipe> getRecipeById(@PathVariable Long id) {
+        return this.recipeService.getRecipeById(id);
+    }
+
     @PostMapping("/recipe")
     public void addRecipe(@RequestBody Recipe recipe) {
         this.recipeService.saveRecipe(recipe);
@@ -29,6 +35,6 @@ public class RecipeController {
 
     @DeleteMapping("/recipe/{id}")
     public void deleteRecipe(@PathVariable Long id) {
-        this.recipeService.deleteRecipeByid(id);
+        this.recipeService.deleteRecipeById(id);
     }
 }
