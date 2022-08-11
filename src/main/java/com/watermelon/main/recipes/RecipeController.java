@@ -29,8 +29,8 @@ public class RecipeController {
     }
 
     @PostMapping("/recipe")
-    public void addRecipe(@RequestBody Recipe recipe) {
-        this.recipeService.saveRecipe(recipe);
+    public Recipe addRecipe(@RequestBody Recipe recipe) {
+        return this.recipeService.saveRecipe(recipe);
     }
 
     @DeleteMapping("/recipe/{id}")

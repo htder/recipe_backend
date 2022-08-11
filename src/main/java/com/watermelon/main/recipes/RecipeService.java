@@ -22,8 +22,8 @@ public class RecipeService {
         return this.recipeRepository.findAll();
     }
 
-    public void saveRecipe(Recipe recipe) {
-        this.recipeRepository.save(recipe);
+    public Recipe saveRecipe(Recipe recipe) {
+        return this.recipeRepository.save(recipe);
     }
 
     public void deleteRecipeById(Long id) {
