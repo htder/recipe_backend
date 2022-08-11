@@ -33,4 +33,6 @@ public class RecipeService {
     public Optional<Recipe> getRecipeById(Long id) {
         return this.recipeRepository.findById(id);
     }
+
+    public void updateRecipe(Recipe recipe) { this.recipeRepository.save(recipe); }
 }
