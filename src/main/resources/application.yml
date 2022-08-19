@@ -7,16 +7,16 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-  security:
-    oauth2:
-      client:
-        registration:
-          github:
-            client-id:
-            client-secret:
-            scope:
-              - user:email
-              - read:user
-          google:
-            client-id:
-            client-secret:
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          github:
+#            client-id:
+#            client-secret:
+#            scope:
+#              - user:email
+#              - read:user
+#          google:
+#            client-id:
+#            client-secret:
