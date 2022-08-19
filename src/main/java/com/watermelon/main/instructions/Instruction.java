@@ -60,5 +60,12 @@ public class Instruction {
         return Objects.hash(id, instructionText, instructionPosition);
     }
 
-
+    @Override
+    public String toString() {
+        return "Instruction{" +
+                "id=" + id +
+                ", instructionText='" + instructionText + '\'' +
+                ", instructionPosition=" + instructionPosition +
+                '}';
+    }
 }
